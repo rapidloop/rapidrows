@@ -1,0 +1,10 @@
+{
+	"version": "1",
+	"endpoints": [
+		{
+			"uri": "/hello",
+			"implType": "static-text",
+			"script": "world!"
+		}
+	]
+}

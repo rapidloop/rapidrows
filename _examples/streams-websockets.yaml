@@ -1,0 +1,9 @@
+version: '1'
+streams:
+- uri: '/new_payments_ws'
+  type: 'websocket'
+  datasource: 'pagila'
+  channel: 'payment_received'
+datasources:
+- name: 'pagila'
+  dbname: 'pagila'

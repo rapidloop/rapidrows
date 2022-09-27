@@ -1,0 +1,18 @@
+version: '1'
+endpoints:
+- uri: /params-required
+  implType: query-json
+  datasource: pagila
+  script: |
+    SELECT $1, $2
+  params:
+  - name: required_param
+    in: body
+    type: string
+    required: true
+  - name: optional_param
+    in: body
+    type: string
+datasources:
+- name: pagila
+  dbname: pagila

@@ -1,0 +1,15 @@
+version: '1'
+endpoints:
+- uri: /query-with-param
+  implType: query-json
+  datasource: pagila
+  script: |
+    SELECT title, description FROM film WHERE fulltext @@ to_tsquery($1) ORDER BY title ASC
+  params:
+  - name: descfts
+    in: query
+    type: string
+    required: true
+datasources:
+- name: pagila
+  dbname: pagila

@@ -1,0 +1,34 @@
+version: '1'
+jobs:
+- name: create-monthly-partition
+  type: javascript
+  schedule: '0 10 28 * *'
+  datasource: pagila
+  script: |
+    const now = new Date();
+    const nextMonth  = new Date(now.getFullYear(), now.getMonth()+1, 1);
+    const next2Month = new Date(nextMonth.getFullYear(), nextMonth.getMonth()+1, 1);
+    const y1 = nextMonth.getFullYear(), m1 = nextMonth.getMonth() + 1;
+    const y2 = next2Month.getFullYear(), m2 = next2Month.getMonth() + 1;
+    const m1s = (m1 < 10 ? '0' : '') + m1, m2s = (m2 < 10 ? '0' : '') + m2;
+     
+    // make the sql to create a partition for next month
+    const sql = `
+    CREATE TABLE public.payment_p${y1}_${m1s} (
+      payment_id integer DEFAULT nextval('public.payment_payment_id_seq'::regclass) NOT NULL,
+      customer_id integer NOT NULL,
+      staff_id integer NOT NULL,
+      rental_id integer NOT NULL,
+      amount numeric(5,2) NOT NULL,
+      payment_date timestamp with time zone NOT NULL
+    );
+    
+    ALTER TABLE ONLY public.payment
+    ATTACH PARTITION public.payment_p${y1}_${m1s}
+    FOR VALUES FROM ('${y1}-${m1s}-01 00:00:00+00') TO ('${y2}-${m2s}-01 00:00:00+00');`
+    
+    // run the sql
+    $sys.acquire('pagila').exec(sql)
+datasources:
+- dbname: pagila
+  name: pagila

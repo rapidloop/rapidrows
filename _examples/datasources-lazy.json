@@ -1,0 +1,15 @@
+{
+  "version": "1",
+  "datasources": [
+    {
+      "name": "pagila",
+      "pool": {
+        "minConns": 5,
+        "maxConns": 10,
+        "maxIdleTime": 600,
+        "lazy": true
+      }
+    }
+  ]
+}
+

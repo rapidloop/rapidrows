@@ -1,0 +1,43 @@
+version: '1'
+endpoints:
+- uri: /exec-js
+  implType: javascript
+  methods:
+  - POST
+  datasource: pagila
+  script: |
+    // get a connection to a datasource
+    let conn = $sys.acquire("pagila");
+
+    // perform a query
+    let genreResult = conn.query(`
+      select C.name
+        from rental R
+        join inventory I on R.inventory_id = I.inventory_id
+        join film_category FC on I.film_id = FC.film_id
+        join category C on C.category_id = FC.category_id
+      where R.rental_id = $1
+    `, $sys.params.rental_id);
+
+    // check the result
+    if (genreResult.rows.length != 1)
+      throw "Rental not found";
+    const genre = genreResult.rows[0][0];
+
+    // further checks
+    let today = (new Date()).getDay();
+    if (genre == "Horror" && today == 3)
+      throw "Cannot return Horror DVDs on Wednesdays!"
+
+    // exec a SQL without a resultset
+    conn.exec("UPDATE rental SET return_date = now() WHERE rental_id = $1",
+      $sys.params.rental_id)
+  params:
+  - name: rental_id
+    in: body
+    type: integer
+    minimum: 1
+    required: true
+datasources:
+- name: pagila
+  dbname: pagila

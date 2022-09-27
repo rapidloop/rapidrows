@@ -1,0 +1,10 @@
+version: '1'
+cors:
+  allowedOrigins: [ 'http://foo.com' ]
+  allowedMethods: [ 'GET' ]
+  allowedHeaders: [ 'X-Pingother', 'Content-Type' ]
+  debug: true
+endpoints:
+- uri: /hello
+  implType: static-text
+  script: world!

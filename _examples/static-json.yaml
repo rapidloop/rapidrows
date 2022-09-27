@@ -1,0 +1,7 @@
+version: '1'
+endpoints:
+- uri: /hello-json
+  implType: static-json
+  script: >
+    { "mykey1": 100, "mykey2": [1.2, 1.3],
+      "mykey3": "hello" }

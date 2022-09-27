@@ -1,0 +1,18 @@
+{
+  "version": "1",
+  "datasources": [
+    {
+      "name": "pagila",
+      "host": "pg-staging-3.corp.example.com",
+      "dbname": "pagila",
+      "user": "webappuser",
+      "passfile": "/home/deploy/.pgpass",
+      "sslmode": "require",
+      "params": {
+        "application_name": "rapidrows",
+        "search_path": "pagila,public"
+      },
+      "timeout": 10
+    }
+  ]
+}

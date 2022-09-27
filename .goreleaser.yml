@@ -1,0 +1,28 @@
+builds:
+  - binary: rapidrows
+    main: ./cmd/rapidrows
+    targets:
+      - linux_amd64
+    flags:
+      - -a
+      - -trimpath
+    ldflags:
+      - -s -w -X main.version={{.Version}} -extldflags "-static"
+archives:
+  - format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - README.md
+      - LICENSE
+    wrap_in_directory: true
+    name_template: '{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
+release:
+  draft: true
+  github:
+    owner: rapidloop
+    name: rapidrows
+  name_template: 'Release {{.Version}}'
+checksum:
+

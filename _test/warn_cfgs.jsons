@@ -1,0 +1,36 @@
+{
+	"version": "1.0.0",
+	"jobs": [
+		{
+			"name": "a",
+			"type": "exec",
+			"script": "asdf",
+			"schedule": "* */10 * * *",
+			"datasource": "ds1",
+			"timeout": 0
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"cors": { "maxAge": -1 }
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "static-text",
+			"timeout": -1.5,
+			"cache": -2.5
+		}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"datasources": [{"name": "ds1", "timeout": 0}]
+}

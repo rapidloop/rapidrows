@@ -1,0 +1,6 @@
+version: '1'
+listen: '127.0.0.1:8081'
+endpoints:
+- uri: /hello
+  implType: static-text
+  script: world!

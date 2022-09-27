@@ -1,0 +1,40 @@
+{
+  "version": "1",
+  "endpoints": [
+    {
+      "uri": "/params-enum",
+      "implType": "query-json",
+      "datasource": "pagila",
+      "script": "SELECT $1, $2, $3\n",
+      "params": [
+        {
+          "name": "lang",
+          "in": "body",
+          "type": "string",
+          "required": true,
+          "enum": [
+            "english",
+            "german",
+            "japanese"
+          ]
+        },
+        {
+          "name": "year",
+          "in": "body",
+          "type": "integer",
+          "required": true,
+          "enum": [
+            2022,
+            1950
+          ]
+        }
+      ]
+    }
+  ],
+  "datasources": [
+    {
+      "name": "pagila",
+      "dbname": "pagila"
+    }
+  ]
+}

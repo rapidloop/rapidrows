@@ -1,0 +1,17 @@
+version: '1'
+endpoints:
+- uri: /params-minmax
+  implType: query-json
+  datasource: pagila
+  script: |
+    SELECT $1
+  params:
+  - name: year
+    in: body
+    type: integer
+    required: true
+    minimum: 1972
+    maximum: 2022
+datasources:
+- name: pagila
+  dbname: pagila

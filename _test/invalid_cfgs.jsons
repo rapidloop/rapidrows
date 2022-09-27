@@ -1,0 +1,1277 @@
+{
+}
+
+{
+	"version": "hai"
+}
+
+{
+	"version": "2"
+}
+
+{
+	"version": "1",
+	"listen": "a:b:c"
+}
+
+{
+	"version": "1",
+	"listen": ":808080"
+}
+
+{
+	"__note": "listen: v6 ips must be enclosed in [] to be valid",
+	"version": "1",
+	"listen": "::1"
+}
+
+{
+	"__note": "listen: only ip v4 and v6 literals, no hostnames",
+	"version": "1",
+	"listen": "foobar:80"
+}
+
+{
+	"version": "1",
+	"commonPrefix": "foo"
+}
+
+{
+	"version": "1",
+	"commonPrefix": "/foo/"
+}
+
+{
+	"version": "1",
+	"commonPrefix": "/foo/{bar}"
+}
+
+{
+	"version": "1",
+	"cors": { "allowedOrigins": ["**"] }
+}
+
+{
+	"version": "1",
+	"cors": { "allowedOrigins": ["https://*.foo.com"], "allowedMethods": ["EAT"] }
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [{}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [{"uri": "/"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [{"uri": "/", "implType": "foo"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [{"uri": "/", "implType": "static-json"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{"uri": "/", "implType": "static-text"},
+		{"uri": "/", "implType": "static-json", "script": "{}"}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [{"uri": "/", "implType": "static-json", "script": "oops, not json"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [{"uri": "/", "methods": ["EAT"], "implType": "static-text"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [{"uri": "/", "implType": "query-json"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [{"uri": "/", "implType": "query-json", "script": "select 1 from dummy"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "not found"
+		}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"tx": { "access": "sure" }
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"tx": { "access": "read-only", "level": "yes" }
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [{}]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [{"name": "*"}]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [{"name": "-a"}]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [{"name": "a", "in": "aaa"}]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [{"name": "a", "in": "query"}]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [{"name": "a", "in": "query", "type": "asdf"}]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [{"name": "a", "in": "query", "type": "integer", "elemType": "integer"}]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [{"name": "a", "in": "query", "type": "integer", "pattern": "[0-9]+"}]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [{"name": "a", "in": "query", "type": "integer", "maxLength": 100}]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [{"name": "a", "in": "query", "type": "integer", "minItems": 10}]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [{"name": "a", "in": "query", "type": "integer", "maxItems": 10}]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{"name": "a", "in": "query", "type": "integer"},
+				{"name": "a", "in": "query", "type": "string"}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "integer",
+					"minimum": 100.5
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "integer",
+					"minimum": 100,
+					"maximum": 200.5
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "integer",
+					"minimum": 100,
+					"maximum": 20
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "integer",
+					"enum": [ "asdf" ]
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "integer",
+					"enum": [ 100.5 ]
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "integer",
+					"enum": [ true ]
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "integer",
+					"enum": [ "yes" ]
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "integer",
+					"enum": [ {} ]
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "integer",
+					"enum": [ [] ]
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "integer",
+					"enum": [ null ]
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "integer",
+					"enum": [ "100.5" ]
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "string",
+					"maxLength": -1
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "string",
+					"pattern": "***"
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "string",
+					"minimum": 100
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "string",
+					"maximum": 100
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "string",
+					"enum": [1,2,3]
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "array"
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "array",
+					"elemType": "wat"
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "array",
+					"elemType": "array"
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "array",
+					"elemType": "string",
+					"minItems": -1
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "array",
+					"elemType": "string",
+					"maxItems": -1
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "array",
+					"elemType": "string",
+					"minItems": 20,
+					"maxItems": 10
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "string",
+					"elemType": "string"
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "boolean",
+					"enum": [ true ]
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "number",
+					"enum": [ true ]
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1",
+			"params": [
+				{
+					"name": "a",
+					"in": "query",
+					"type": "number",
+					"enum": [ "yes" ]
+				}
+			]
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "query-json",
+			"script": "select 1 from dummy",
+			"datasource": "ds1"
+		}
+	],
+	"streams": [
+		{
+			"uri": "/"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"streams": [
+		{
+			"uri": "/",
+			"type": "wat"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"streams": [
+		{
+			"uri": "/",
+			"type": "sse"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"streams": [
+		{
+			"uri": "/",
+			"type": "sse",
+			"datasource": "asdf"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"streams": [
+		{
+			"uri": "/",
+			"type": "sse",
+			"datasource": "ds1"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"streams": [
+		{
+			"uri": "/",
+			"type": "sse",
+			"datasource": "ds1",
+			"channel": "Robert'); DROP TABLE students;--"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"streams": [
+		{
+			"uri": "/",
+			"type": "websockies",
+			"datasource": "ds1",
+			"channel": "c"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"streams": [
+		{
+			"uri": "/u1",
+			"type": "websocket",
+			"datasource": "ds1",
+			"channel": "c"
+		},
+		{
+			"uri": "/u1",
+			"type": "sse",
+			"datasource": "ds1",
+			"channel": "c"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"streams": [
+		{
+			"uri": "u1",
+			"type": "websocket",
+			"datasource": "ds1",
+			"channel": "c"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"streams": [
+		{
+			"uri": "/u1/{id}",
+			"type": "websocket",
+			"datasource": "ds1",
+			"channel": "c"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"streams": [
+		{
+			"uri": "/u1/id/",
+			"type": "websocket",
+			"datasource": "ds1",
+			"channel": "c"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"datasources": [
+		{"name": "ds1"},
+		{"name": "ds1"}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"datasources": [
+		{"name": "***"}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"datasources": [
+		{
+			"name": "ds1",
+			"params": {
+				"9999": "9999"
+			}
+		}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"datasources": [
+		{
+			"name": "ds1",
+			"role": "'); drop table users; --"
+		}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"datasources": [
+		{
+			"name": "ds1",
+			"sslcert": "/no/such/file"
+		}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"datasources": [
+		{
+			"name": "ds1",
+			"sslrootcert": "/no/such/file"
+		}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"datasources": [
+		{
+			"name": "ds1",
+			"sslkey": "/no/such/file"
+		}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"datasources": [
+		{
+			"name": "ds1",
+			"pool": {
+				"minConns": -1
+			}
+		}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"datasources": [
+		{
+			"name": "ds1",
+			"pool": {
+				"maxConns": -1
+			}
+		}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"datasources": [
+		{
+			"name": "ds1",
+			"pool": {
+				"minConns": 10,
+				"maxConns": 5
+			}
+		}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"datasources": [
+		{
+			"name": "ds1",
+			"pool": {
+				"maxIdleTime": -1.5
+			}
+		}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"datasources": [
+		{
+			"name": "ds1",
+			"pool": {
+				"maxConnectedTime": 0
+			}
+		}
+	]
+}
+
+{
+	"version": "1.0.0",
+	"jobs": [
+		{"name": "*"}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"jobs": [
+		{
+			"name": "a",
+			"type": "b"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"jobs": [
+		{
+			"name": "a",
+			"type": "exec"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"jobs": [
+		{
+			"name": "a",
+			"type": "exec",
+			"script": "asdf"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"jobs": [
+		{
+			"name": "a",
+			"type": "exec",
+			"script": "asdf",
+			"schedule": "asdf"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"jobs": [
+		{
+			"name": "a",
+			"type": "exec",
+			"script": "asdf",
+			"schedule": "* */10 * * *",
+			"tx": { "access": "yes" }
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"jobs": [
+		{
+			"name": "a",
+			"type": "exec",
+			"script": "asdf",
+			"schedule": "* */10 * * *"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"jobs": [
+		{
+			"name": "a",
+			"type": "exec",
+			"script": "asdf",
+			"schedule": "* */10 * * *",
+			"datasource": "ds2"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"jobs": [
+		{
+			"name": "a",
+			"type": "exec",
+			"script": "asdf",
+			"schedule": "* */10 * * *",
+			"datasource": "ds1"
+		},
+		{
+			"name": "a",
+			"type": "exec",
+			"script": "asdf",
+			"schedule": "* */10 * * *",
+			"datasource": "ds1"
+		}
+	],
+	"datasources": [{"name": "ds1"}]
+}
+
+{
+	"version": "1.0.0",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "static-text",
+			"params": [
+				{
+					"name": "a",
+					"in": "path",
+					"type": "array"
+				}
+			]
+		}
+	]
+}

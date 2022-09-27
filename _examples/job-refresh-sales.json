@@ -1,0 +1,18 @@
+{
+  "version": "1",
+  "jobs": [
+    {
+      "name": "refresh-sales",
+      "schedule": "0 * * * *",
+      "type": "exec",
+      "script": "REFRESH MATERIALIZED VIEW rental_by_category",
+      "datasource": "pagila"
+    }
+  ],
+  "datasources": [
+    {
+      "name": "pagila",
+      "dbname": "pagila"
+    }
+  ]
+}

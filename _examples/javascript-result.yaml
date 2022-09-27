@@ -1,0 +1,33 @@
+version: '1'
+endpoints:
+- uri: /rental/{rental_id}
+  implType: javascript
+  datasource: pagila
+  script: |
+    // get a connection to a datasource
+    let conn = $sys.acquire("pagila");
+
+    // perform a query
+    let queryResult = conn.query(`
+      select C.first_name || ' ' || C.last_name
+        from rental R
+        join customer C on R.customer_id = C.customer_id
+      where R.rental_id = $1
+    `, $sys.params.rental_id);
+
+    // check the result
+    if (queryResult.rows.length != 1)
+      throw "Rental not found";
+    const custname = queryResult.rows[0][0];
+
+    // return a result
+    $sys.result = { 'custname': custname };
+  params:
+  - name: rental_id
+    in: path
+    type: integer
+    minimum: 1
+    required: true
+datasources:
+- name: pagila
+  dbname: pagila

@@ -1,0 +1,17 @@
+version: '1'
+endpoints:
+- uri: /exec
+  implType: exec
+  methods:
+  - POST
+  datasource: pagila
+  script: UPDATE rental SET return_date = now() WHERE rental_id = $1
+  params:
+  - name: rental_id
+    in: body
+    type: integer
+    minimum: 1
+    required: true
+datasources:
+- name: pagila
+  dbname: pagila

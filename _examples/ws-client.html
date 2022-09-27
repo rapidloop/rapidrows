@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <textarea id="messages" cols="80" rows="40" style="margin: 10px; border: 1px solid #888"></textarea>
+
+    <script type="text/javascript">
+      let messages = document.getElementById("messages");
+      let socket = new WebSocket("ws://devel:8080/new_payments_ws");
+
+      socket.onopen = (e) => {
+        messages.value += "event: open\n";
+      };
+      socket.onclose = (e) => {
+          messages.value += `event: close; wasClean=${e.wasClean}, code=${e.code}, reason=${e.reason}`;
+      };
+      socket.onerror = (e) => {
+        messages.value += `event: error; message=${e.message}`;
+      };
+      socket.onmessage = (e) => {
+        messages.value += `event: data; data=${e.data}\n`;
+      };
+    </script>
+  </body>
+</html>

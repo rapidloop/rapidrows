@@ -1,0 +1,10 @@
+{
+  "version": "1",
+  "datasources": [
+    {
+      "name": "pagila",
+      "user": "postgres",
+      "role": "readonlyuser"
+    }
+  ]
+}
