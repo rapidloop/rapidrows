@@ -103,7 +103,7 @@ func realmain() int {
 				fmt.Print("error: ")
 				e++
 			}
-			fmt.Println(r.Msg)
+			fmt.Println(r.Message)
 		}
 		if w > 0 || e > 0 {
 			fmt.Printf("\n%s: %d error(s), %d warning(s)\n", flagset.Arg(0), e, w)

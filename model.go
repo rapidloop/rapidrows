@@ -95,7 +95,7 @@ func (c *APIServerConfig) IsValid() error {
 	var a []string
 	for _, r := range c.Validate() {
 		if !r.Warn {
-			a = append(a, r.Msg)
+			a = append(a, r.Message)
 		}
 	}
 	if len(a) > 0 {
@@ -110,8 +110,8 @@ type ValidationResult struct {
 	// Warn is true if the message is a warning, else it is an error.
 	Warn bool
 
-	// Msg is the actual textual message describing the error or warning.
-	Msg string
+	// Message is the actual textual message describing the error or warning.
+	Message string
 }
 
 //------------------------------------------------------------------------------

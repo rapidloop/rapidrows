@@ -34,15 +34,15 @@ import (
 
 func addWarn(r []ValidationResult, msg string) []ValidationResult {
 	return append(r, ValidationResult{
-		Warn: true,
-		Msg:  msg,
+		Warn:    true,
+		Message: msg,
 	})
 }
 
 func addError(r []ValidationResult, msg string) []ValidationResult {
 	return append(r, ValidationResult{
-		Warn: false,
-		Msg:  msg,
+		Warn:    false,
+		Message: msg,
 	})
 }
 
