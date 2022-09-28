@@ -17,6 +17,8 @@
 package rapidrows
 
 import (
+	"compress/flate"
+	"compress/gzip"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -401,16 +403,38 @@ func (a *APIServer) getParams(req *http.Request, ep *Endpoint,
 	)
 	if req.Method == "GET" {
 		urlData = req.URL.Query()
-	} else if ct := getCT(req); ct == "application/json" {
-		if err := getJSON(req, &jsonData); err != nil {
-			logger.Warn().Err(err).Msg("failed to decode json object in request body")
-			jsonData = nil
+	} else {
+		var wrapped bool
+		if ce := req.Header.Get("Content-Encoding"); ce == "gzip" {
+			if r, err := gzip.NewReader(req.Body); err != nil {
+				logger.Error().Err(err).Msg("failed to initialize gzip reader")
+				return nil, fmt.Errorf("failed to initialize gzip reader: %v", err)
+			} else {
+				wrapped = true
+				req.Body = r
+			}
+		} else if ce == "deflate" {
+			wrapped = true
+			req.Body = flate.NewReader(req.Body)
 		}
-	} else if ct == "application/x-www-form-urlencoded" {
-		if err := req.ParseForm(); err != nil {
-			logger.Warn().Err(err).Msg("failed to parse form data in request body")
-		} else {
-			formData = req.PostForm
+		if ct := getCT(req); ct == "application/json" {
+			if err := getJSON(req, &jsonData); err != nil {
+				logger.Warn().Err(err).Msg("failed to decode json object in request body")
+				jsonData = nil
+			}
+		} else if ct == "application/x-www-form-urlencoded" {
+			if err := req.ParseForm(); err != nil {
+				logger.Warn().Err(err).Msg("failed to parse form data in request body")
+			} else {
+				formData = req.PostForm
+			}
+		}
+		if wrapped {
+			if rc, ok := req.Body.(io.Closer); ok {
+				if err := rc.Close(); err != nil {
+					logger.Warn().Err(err).Msg("failed to close gzip/deflate reader")
+				}
+			}
 		}
 	}
 

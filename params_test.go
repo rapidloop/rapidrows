@@ -18,10 +18,13 @@ package rapidrows_test
 
 import (
 	"bytes"
+	"compress/flate"
+	"compress/gzip"
 	"encoding/json"
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 	"testing"
 	"time"
 
@@ -1089,5 +1092,91 @@ func TestParamsInvalidPost(t *testing.T) {
 	r.Nil(err)
 	resp.Body.Close()
 	r.Equal(400, resp.StatusCode)
+	s.Stop(time.Second * 5)
+}
+
+const cfgTestParamsCompr = `{
+	"version": "1",
+	"listen": "127.0.0.1:60000",
+	"endpoints": [
+		{
+			"uri": "/",
+			"implType": "static-text",
+			"params": [
+				{
+					"name": "p",
+					"in": "body",
+					"type": "string",
+					"pattern": "a+",
+					"required": true
+				}
+			],
+			"script": "success"
+		}
+	]
+}`
+
+func TestParamsComprGzip(t *testing.T) {
+	r := require.New(t)
+
+	cfg := loadCfg(r, cfgTestParamsCompr)
+	s := startServer(r, cfg)
+	time.Sleep(500 * time.Millisecond)
+
+	sbody := "p=" + strings.Repeat("a", 1000)
+	zbody := &bytes.Buffer{}
+	zw := gzip.NewWriter(zbody)
+	_, err := io.Copy(zw, strings.NewReader(sbody))
+	r.Nil(err)
+	r.Nil(zw.Close())
+
+	req, err := http.NewRequest("POST", "http://127.0.0.1:60000/",
+		bytes.NewReader(zbody.Bytes()))
+	r.Nil(err)
+	r.NotNil(req)
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Set("Content-Encoding", "gzip")
+
+	resp, err := http.DefaultClient.Do(req)
+	r.Nil(err, "error was %v", err)
+	r.NotNil(resp)
+	data, err := io.ReadAll(resp.Body)
+	r.Nil(err)
+	resp.Body.Close()
+	r.Equal(200, resp.StatusCode)
+	r.Equal([]byte("success"), data)
+	s.Stop(time.Second * 5)
+}
+
+func TestParamsComprDeflate(t *testing.T) {
+	r := require.New(t)
+
+	cfg := loadCfg(r, cfgTestParamsCompr)
+	s := startServer(r, cfg)
+	time.Sleep(500 * time.Millisecond)
+
+	sbody := "p=" + strings.Repeat("a", 1000)
+	zbody := &bytes.Buffer{}
+	zw, err := flate.NewWriter(zbody, -1)
+	r.Nil(err)
+	_, err = io.Copy(zw, strings.NewReader(sbody))
+	r.Nil(err)
+	r.Nil(zw.Close())
+
+	req, err := http.NewRequest("POST", "http://127.0.0.1:60000/",
+		bytes.NewReader(zbody.Bytes()))
+	r.Nil(err)
+	r.NotNil(req)
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Set("Content-Encoding", "deflate")
+
+	resp, err := http.DefaultClient.Do(req)
+	r.Nil(err, "error was %v", err)
+	r.NotNil(resp)
+	data, err := io.ReadAll(resp.Body)
+	r.Nil(err)
+	resp.Body.Close()
+	r.Equal(200, resp.StatusCode)
+	r.Equal([]byte("success"), data)
 	s.Stop(time.Second * 5)
 }

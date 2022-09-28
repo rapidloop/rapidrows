@@ -71,9 +71,9 @@ func TestValidateConfigWarn(t *testing.T) {
 		}
 		count := 0
 		for _, vr := range cfg.Validate() {
-			r.True(vr.Warn, vr.Msg)
-			r.Greater(len(vr.Msg), 0)
-			t.Logf("warning (expected): %s", vr.Msg)
+			r.True(vr.Warn, vr.Message)
+			r.Greater(len(vr.Message), 0)
+			t.Logf("warning (expected): %s", vr.Message)
 			count++
 		}
 		r.Greater(count, 0, "at least 1 warning was expected")
