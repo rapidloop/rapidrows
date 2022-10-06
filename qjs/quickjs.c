@@ -67,16 +67,18 @@
 #define CONFIG_PRINTF_RNDN
 #endif
 
+// Note: CONFIG_ATOMICS and CONFIG_STACK_CHECK have been disabled for
+// better interoperability with the Go runtime. --MD.
 /* define to include Atomics.* operations which depend on the OS
    threads */
-#if !defined(EMSCRIPTEN)
-#define CONFIG_ATOMICS
-#endif
+//#if !defined(EMSCRIPTEN)
+//#define CONFIG_ATOMICS
+//#endif
 
-#if !defined(EMSCRIPTEN)
+//#if !defined(EMSCRIPTEN)
 /* enable stack limitation */
-#define CONFIG_STACK_CHECK
-#endif
+//#define CONFIG_STACK_CHECK
+//#endif
 
 
 /* dump object free */

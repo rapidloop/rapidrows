@@ -22,7 +22,6 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"runtime"
 	"time"
 
 	"github.com/jackc/pgx/v4/pgxpool"
@@ -360,10 +359,6 @@ func (a *APIServer) runScriptHandler(resp http.ResponseWriter, req *http.Request
 
 func (a *APIServer) runScript(script string, paramsMap map[string]any,
 	logger zerolog.Logger, debug bool) (result any, tag int, err error) {
-	// make the quickjs code run entirely on the same thread
-	runtime.LockOSThread()
-	defer runtime.UnlockOSThread()
-
 	// setup javascript env
 	rt := qjs.NewRuntime()
 	ctx := rt.NewContext()
